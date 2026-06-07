@@ -1,65 +1,69 @@
-                //User Management System:
-
-// Objective:-
-// Create a User class and manage multiple users using an array.
-
 const users = [];
+
+// Create a Class:
 class User {
-  constructor(username, mobilenum, age) {
-    this.UserName = username;
-    this.MobileNum = mobilenum;
-    this.Age = age;
+  constructor(name, mobileNum, age) {
+    this.username = name;
+    this.mobileNumber = mobileNum;
+    this.age = age;
   }
 
+  //Create Class Methods:
+  getUserDetails() {  
+return`Username: ${this.username},
+MobileNumber: ${this.mobileNumber},
+Age: ${this.age}`;
+}
+
+  // Method 2: isAdult() This method should check the user's age.
+  //Print whether the user is an adult
   isAdult() {
-    if (this.Age >= 18) {
+    if (this.age >= 18) {
       return true;
     } else {
       return false;
     }
   }
-
-  getUserDetails() {
-    console.log(`
-UserName: ${this.UserName},
-MobileNum: ${this.MobileNum},
-Age: ${this.Age},
-//execute the isAdult method of the current object
-Adult: ${this.isAdult()}
-`);
-}
 }
 
-const userone = new User("alice", "9976786672", 16,);
+const user1 = new User("rayyan", "9976786672", 19);
 
-const usertwo = new User("bob", "9976786672",  19, );
+const user2 = new User("shahid", "7443567892", 17);
 
-const userthree = new User("charlie", "7418645952",    33,);
-
-
-users.push(userone,usertwo,userthree);
-
-console.log(users);
-
-users.forEach((userdata)=>{
-  userdata.getUserDetails();
-})
+const user3 = new User("faasil", "8879665432", 18);
 
 
-//Create JSON Data:
 
-const jsondata = `[
- { "username": "Alice", "mobileNum": "9876543210", "age": 25 },
- { "username": "Bob", "mobileNum": "9123456780", "age": 30 },
- { "username": "Charlie", "mobileNum": "9001122334", "age": 17 }
+ //Store Users in an Array
+users.push(user1,user2,user3);
+
+  for(let i=0; i<users.length; i++){
+    console.log(users[i].getUserDetails());
+     console.log("adult:",users[i].isAdult());
+  }
+
+ const jsondata = `[
+  {"username": "Alice", "mobileNum": "9876543210", "age": "25" },
+  {"username": "Bob", "mobileNum": "9123456780", "age": "30" },
+  {"username": "Charlie", "mobileNum": "9001122334", "age": "17" }
 ]`;
 
-const usersdata = JSON.parse(jsondata);
-usersdata.forEach((element) => {
-  console.log(element);
-});
+//before parse
+console.log(jsondata)
 
-  let data = JSON.stringify(usersdata);
+let newdata = JSON.parse(jsondata);
 
-  console.log(data);
-      
+//after parse
+console.log(newdata);
+
+for(let i=0; i<newdata.length; i++){
+  console.log(`
+               username: ${newdata[i].username}
+               mobilenum: ${newdata[i].mobileNum}
+               age: ${newdata[i].age}
+               `)             
+}
+
+//Convert Object Back to JSON
+  json = JSON.stringify(newdata);
+ console.log(json)
